@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+
+    <script>
+
+        function computerPlay(min, max) {
+            min = Math.ceil(min)
+            max = Math.floor(max)
+            let randomNumber = Math.floor(Math.random() * 3 + 1)
+
+            if (randomNumber === 1) {
+                return "Rock"
+            } else if (randomNumber === 2) {
+                return "Paper"
+            } else if (randomNumber === 3) {
+                return "Scissors"
+            } else {
+                return "Program is not working correctly"
+            }
+        }
+
+        let score = 0
+        let points
+        const computerSelection = computerPlay()
+        const playerSelection = "rock"
+
+
+        function playRound(playerSelection, computerSelection) {
+            // set computerSelection
+            // get a new randomized value from the function computerPlay every time the function playRound is called
+            computerSelection = computerPlay()
+            // define cases in which the user wins
+            if (
+                playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "rock" ||
+                playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "scissors" ||
+                playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "paper"
+                ) {
+                    console.log(`You win! ${capitalize(playerSelection)} beats ${computerSelection}.`)
+                    // get one point on your score for winning this round
+                    points = 1
+                    // return the point you gained for winning this round
+                    return points
+                    // function execution ends, go back to for loop in the game function
+                } else if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
+                    points = 0
+                    console.log(`Tied! You both chose ${computerSelection}.`)
+                    return points
+                } else {
+                    points = -1
+                    console.log(`You lose! ${computerSelection} beats ${capitalize(playerSelection)}.`)
+                    return points
+                }
+        }
+
+
+        function game() {
+            // as long as i (number of games) is lower or equals five
+            for (let i = 1; i<=5; i++) {
+                // play a round of rock paper scissors
+                playRound(playerSelection, computerSelection)
+                // add points to your total score
+                score = score + points
+                console.log("Current score: " + score)
+                console.log("Round completed")
+            }
+            if(score>0) {
+                console.log("Great match. You won!")
+                return "Great match. You won!"
+            } else if (score<0) {
+                console.log("Such a shame. You lost.")
+                return "Such a shame. You lost."
+            } else {
+                console.log("Close match. You tied!")
+                return "Close match. You tied!"
+            }
+        }
+
+
+        // helper function to capitalize playerSelection
+        function capitalize(string) {
+            return string[0].toUpperCase() + string.substring(1).toLowerCase()
+        }
+
+
+        // start game
+        game()
+    
+    </script>
+
+</head>
+</html>
