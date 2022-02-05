@@ -27,13 +27,15 @@
         let score = 0
         let points
         const computerSelection = computerPlay()
-        const playerSelection = "rock"
+        const playerSelection = ""
 
 
         function playRound(playerSelection, computerSelection) {
             // set computerSelection
             // get a new randomized value from the function computerPlay every time the function playRound is called
             computerSelection = computerPlay()
+            // ask player for his choice
+            playerSelection = prompt("Choose rock, paper or scissors")
             // define cases in which the user wins
             if (
                 playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "rock" ||
